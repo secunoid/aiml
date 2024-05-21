@@ -25,16 +25,53 @@ https://www.linkedin.com/in/shahidsharif[Shahid Sharif]
 == Overview
 
 <<<
+
+== Large Language Models
+
+Large language models (LLMs) have been developed by various organizations and serve different purposes. Here's a list categorized by their primary function, the type of classification they perform, and their makers:
+
+### **Function-Based Categories:**
+1. **Generative Models:** Designed to generate text that is coherent and contextually relevant.
+2. **Understanding Models:** Focused on comprehending and interpreting text.
+3. **Translation Models:** Specialized in translating text from one language to another.
+4. **Multimodal Models:** Capable of processing and understanding more than one type of data input, like text and images.
+
+### **Classification Tasks:**
+- **Sentiment Analysis:** Determining the sentiment behind a piece of text.
+- **Topic Classification:** Identifying the main topics or themes in a text.
+- **Language Detection:** Recognizing the language used in the text.
+- **Named Entity Recognition (NER):** Extracting names of people, places, organizations, etc., from text.
+
+### **Makers of Large Language Models:**
+- **OpenAI:** Known for the GPT (Generative Pre-trained Transformer) series, including GPT-3 and GPT-4¹.
+- **Google AI:** Creator of BERT (Bidirectional Encoder Representations from Transformers) and T5 (Text-to-Text Transfer Transformer)¹.
+- **Facebook AI Research (FAIR):** Developed models like RoBERTa (A Robustly Optimized BERT Pretraining Approach) and BlenderBot¹.
+- **Anthropic:** Maker of Claude and other conversational AI models¹.
+
+These models are at the forefront of AI research and have been instrumental in advancing natural language processing tasks¹. They are continuously evolving, with new models being developed to address specific challenges and improve performance in various domains¹.
+
+Sources:
+
+. A Comprehensive Overview of Large Language Models - arXiv.org. https://arxiv.org/html/2307.06435v7.
+. [2307.06435] A Comprehensive Overview of Large Language Models - arXiv.org. https://arxiv.org/abs/2307.06435.
+. “A Comprehensive List of the Most Powerful Large Language Models to .... https://langlabs.io/a-comprehensive-list-of-the-most-powerful-large-language-models-to-unleash-your-creativity/.
+. Category:Large language models - Wikipedia. https://en.wikipedia.org/wiki/Category:Large_language_models.
+. The Definitive Guide to Open Source Large Language Models (LLMs). https://hypestudio.org/blog/guide-to-open-source-large-language-models/.
+. https://github.com/humza909/LLM_Survey.git.
+. https://doi.org/10.48550/arXiv.2307.06435.
+
+<<<
+
 == Large Learning Models
 Large learning models categorized by their type, classification task, and maker:
 
-Types of Deep Learning Models for Classification:
+=== Types of Deep Learning Models for Classification:
 
 * Convolutional Neural Networks (CNNs): Ideal for image and video recognition, medical image analysis.
 * Recurrent Neural Networks (RNNs): Suitable for speech recognition, language modeling.
 * Long Short-Term Memory Networks (LSTMs): Used for sequence prediction, natural language text generation.
 
-Transformer Models: Effective for language understanding, translation, and generative tasks.
+=== Transformer Models: Effective for language understanding, translation, and generative tasks.
 Classification Tasks:
 
 * Image Classification: Assigning an image to a category (e.g., CNNs).
@@ -42,7 +79,7 @@ Classification Tasks:
 * Speech Recognition: Transcribing spoken language into text (e.g., RNNs, LSTMs).
 * Fraud Detection: Identifying fraudulent activities (e.g., Deep Neural Networks).
 
-Makers of Large Learning Models:
+=== Makers of Large Learning Models:
 * OpenAI: Known for models like GPT (Generative Pre-trained Transformer).
 * Google: Creator of models like BERT (Bidirectional Encoder Representations from Transformers).
 * Facebook AI: Developed models such as RoBERTa (A Robustly Optimized BERT Pretraining Approach).
@@ -50,3 +87,4 @@ Makers of Large Learning Models:
 
 These models are the backbone of many AI applications, leveraging neural networks with multiple layers to learn representations of data. They are trained on large datasets and can perform a variety of tasks, including but not limited to classification3. The choice of model often depends on the specific task and the nature of the data.
 
+<<<
