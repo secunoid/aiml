@@ -1,6 +1,6 @@
 = Artificial Intelligence & Machine Learning - A Comprehensive Reference
 Doc Writer <ssharif@secunoid.com>
-v1.23.05.16.01
+v1.25.07.09.01
 :numbered:
 :sectnum:
 :sectnumlevels: 5
@@ -20,7 +20,7 @@ v1.23.05.16.01
 
 <<<
 == Author
-https://www.linkedin.com/in/shahidsharif[Shahid Sharif]
+https://www.securityprivacyrisk.com/about[Shahid Sharif]
 
 == Overview
 
@@ -88,3 +88,6 @@ Classification Tasks:
 These models are the backbone of many AI applications, leveraging neural networks with multiple layers to learn representations of data. They are trained on large datasets and can perform a variety of tasks, including but not limited to classification3. The choice of model often depends on the specific task and the nature of the data.
 
 <<<
+
+== Model Context Protocol
+https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization[Latest Authorization Specification]
