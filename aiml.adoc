@@ -1,6 +1,6 @@
 = Artificial Intelligence & Machine Learning - A Comprehensive Reference
 Doc Writer <ssharif@secunoid.com>
-v1.25.07.09.01
+v1.25.07.10.01
 :numbered:
 :sectnum:
 :sectnumlevels: 5
@@ -91,3 +91,24 @@ These models are the backbone of many AI applications, leveraging neural network
 
 == Model Context Protocol
 https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization[Latest Authorization Specification]
+
+== Prompt Stacking 
+Here’s What’s Actually Happening
+The most powerful content creators don’t just think like one expert—they think like a team of experts.
+When Gary Vaynerchuk creates content, he’s thinking like a marketer AND a psychologist AND a brand strategist simultaneously.
+When Marie Forleo writes copy, she’s channeling copywriter AND life coach AND business mentor expertise.
+You can teach AI to do the same thing.
+ 
+The Game-Changer
+Role stacking = giving AI multiple expert identities in one prompt.
+Instead of “Act as a copywriter,” try: “Act as a copywriter AND psychologist.”
+Or: “Act as a business coach with the strategic thinking of a consultant and the communication style of a podcast host.”
+AI pulls from multiple expertise pools, creating richer, more nuanced output.
+ 
+See It In Action
+Single Role: “Act as a copywriter. Write an email about my new coaching program.”
+Output: “Discover the coaching program that transforms your business. Limited spots available…”
+Stacked Roles: 
+“Act as a copywriter AND behavioral psychologist. Write an email about my coaching program that addresses the real fears holding people back from investing in themselves.”
+Output: 
+“You’ve been staring at my coaching program for weeks. I know because most people take 47 days to decide on investments over $1,000. It’s not about the money—it’s about the voice in your head saying ‘what if I fail again?’ Here’s why that voice is actually your biggest asset…”
