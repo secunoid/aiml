@@ -1,6 +1,6 @@
 = Artificial Intelligence & Machine Learning - A Comprehensive Reference
 Doc Writer <ssharif@secunoid.com>
-v1.25.07.10.01
+v1.25.07.21.01
 :numbered:
 :sectnum:
 :sectnumlevels: 5
@@ -112,3 +112,24 @@ Stacked Roles:
 “Act as a copywriter AND behavioral psychologist. Write an email about my coaching program that addresses the real fears holding people back from investing in themselves.”
 Output: 
 “You’ve been staring at my coaching program for weeks. I know because most people take 47 days to decide on investments over $1,000. It’s not about the money—it’s about the voice in your head saying ‘what if I fail again?’ Here’s why that voice is actually your biggest asset…”
+
+<<<
+
+== AI Coding Assistants
+
+. GitHub Copilot
+. ChatGPT (OpenAI)
+. Google Gemini Code Assist (formerly Bard)
+. Amazon CodeWhisperer
+. Claude Code (Anthropic)
+. Tabnine
+. Replit Ghostwriter
+. Cursor AI
+. Codeium
+. Meta Code Llama
+. Sourcegraph Cody
+. Windsurf
+. Base 66
+. CodeSquire
+. CodeGeeX
+. CodePal
