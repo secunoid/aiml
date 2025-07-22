@@ -1,6 +1,6 @@
 = Artificial Intelligence & Machine Learning - A Comprehensive Reference
 Doc Writer <ssharif@secunoid.com>
-v1.25.07.21.01
+v1.25.07.21.2
 :numbered:
 :sectnum:
 :sectnumlevels: 5
@@ -117,19 +117,26 @@ Output:
 
 == AI Coding Assistants
 
-. GitHub Copilot
-. ChatGPT (OpenAI)
-. Google Gemini Code Assist (formerly Bard)
+AI coding assistants are tools designed to help developers write, debug, and optimize code more efficiently. They leverage machine learning and natural language processing to understand code context and provide relevant suggestions. Here’s a list of some popular AI coding assistants:
+
+
 . Amazon CodeWhisperer
-. Claude Code (Anthropic)
-. Tabnine
-. Replit Ghostwriter
-. Cursor AI
-. Codeium
-. Meta Code Llama
-. Sourcegraph Cody
-. Windsurf
 . Base 66
+. ChatGPT (OpenAI)
+. Claude Code (Anthropic)
 . CodeSquire
 . CodeGeeX
 . CodePal
+. Cursor AI
+. Codeium
+. GitHub Copilot
+. Google Gemini Code Assist (formerly Bard)
+. Meta Code Llama
+. Replit Ghostwriter
+. Sourcegraph Cody
+. Tabnine
+. Tonic AI
+. Warp
+. Windsurf
+
+
