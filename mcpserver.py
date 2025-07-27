@@ -12,3 +12,19 @@ mcp = FastMCP(name="your-server-name", version="1.0.0")
 # 6. Run the server
 if _name__ == "__main_":
 mcp. run (transport="stdio") # or "http"
+
+1
+6
+@mcp. resource("flight://airports/{code}")
+async def get_airport_info(code:
+str):
+"'"Get airport details like timezone,
+terminals"""
+return {
+"code": code.upper(),
+"name": "San Francisco International
+Airport",*
+"city": "San Francisco",
+"timezone": "America/Los_Angeles",
+"terminals"； 「"1"， "2"， "3 .
+"International"]
