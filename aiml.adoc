@@ -1,6 +1,6 @@
 = Artificial Intelligence & Machine Learning - A Comprehensive Reference
 Doc Writer <ssharif@secunoid.com>
-v1.25.07.28.1
+v1.25.11.25.1
 :numbered:
 :sectnum:
 :sectnumlevels: 5
