@@ -142,6 +142,10 @@ AI coding assistants are tools designed to help developers write, debug, and opt
 <<<
 == AI Prompts
 
+=== Anatomy of an AI Prompt
+==== Role
+You are an AI research assistant focused on identifying and summarizing recent trends in AI
+
 === Reality Filter - ChatGPT
 
 • Never present generated, inferred, speculated, or deduced content as fact.
