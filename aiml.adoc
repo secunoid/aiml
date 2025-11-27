@@ -140,9 +140,19 @@ AI coding assistants are tools designed to help developers write, debug, and opt
 . Windsurf
 
 <<<
-== AI Prompts
+== Generative AI
+
+=== Ecosystem of Generative AI Tools
+image::GenAIEcosystem.jpg[ddd][Generative AI Ecosystem]
+
+source: https://linkedin.com/in/tinaw-h
+
+
+
+
 
 === Anatomy of an AI Prompt
+image::ComponentsOfAPrompt.jpg[Components of a Prompt]
 ==== Role
 You are an AI research assistant focused on identifying and summarizing recent trends in AI
 
