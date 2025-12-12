@@ -1,12 +1,12 @@
 resources
-// 1. Map Private Endpoints
+// 1. First, create a mapping of all Private Endpoints
 | where type =~ 'microsoft.network/privateendpoints'
 | mv-expand connection = properties.privateLinkServiceConnections
 | project TargetResourceId = tolower(tostring(connection.properties.privateLinkServiceId)), HasPrivateEndpoint = true
 | summarize HasPrivateEndpoint = any(HasPrivateEndpoint) by TargetResourceId
-// 2. Join with Publicly accessible resources
+// 2. Right Join this with our list of Publicly accessible resources
 | join kind=rightouter (
-    // PART A: Virtual Machines
+    // PART A: Virtual Machines with Public IPs
     resources
     | where type =~ 'microsoft.compute/virtualmachines'
     | extend nicRefs = coalesce(properties.networkProfile.networkInterfaces, dynamic([]))
@@ -24,7 +24,7 @@ resources
     ) on publicIpId
     | where isnotempty(PublicIPAddress)
     | project SubscriptionId, ResourceGroup, ResourceType = 'microsoft.compute/virtualmachines', ResourceName = vmName, Location, PublicIPAddress, FQDN, Service = 'VirtualMachine', TargetResourceId, StorageAccountName = "" 
-    // PART B: PaaS Services
+    // PART B: All other PaaS Services
     | union (
         resources
         | where type in~ (
@@ -50,16 +50,15 @@ resources
                   FQDN, 
                   Service = tostring(split(type, '/')[-1]), 
                   TargetResourceId = tolower(id),
-                  // Populate StorageAccountName only if the type matches
                   StorageAccountName = iff(type =~ 'microsoft.storage/storageaccounts', name, "")
     )
 ) on TargetResourceId
-// 3. Risk Labeling
+// 3. Add Risk Labeling based on Private Link status
 | extend PrivateLinkStatus = iff(HasPrivateEndpoint == true, "✅ Private Endpoint Exists", "❌ No Private Link")
 | extend RiskLevel = case(
     HasPrivateEndpoint == true and (isnotempty(FQDN) or isnotempty(PublicIPAddress)), "Critical (Dual-Homed)",
     isnotempty(FQDN) or isnotempty(PublicIPAddress), "High (Publicly Exposed)",
     "Standard"
 )
-| project SubscriptionId, ResourceGroup, Service, ResourceName, StorageAccountName, Location, PublicIPAddress, FQDN, PrivateLinkStatus, RiskLevel
+| project SubscriptionId, ResourceGroup, ResourceType, Service, ResourceName, StorageAccountName, Location, PublicIPAddress, FQDN, PrivateLinkStatus, RiskLevel
 | order by RiskLevel desc, Service asc
