@@ -1,0 +1,65 @@
+resources
+// 1. Map Private Endpoints
+| where type =~ 'microsoft.network/privateendpoints'
+| mv-expand connection = properties.privateLinkServiceConnections
+| project TargetResourceId = tolower(tostring(connection.properties.privateLinkServiceId)), HasPrivateEndpoint = true
+| summarize HasPrivateEndpoint = any(HasPrivateEndpoint) by TargetResourceId
+// 2. Join with Publicly accessible resources
+| join kind=rightouter (
+    // PART A: Virtual Machines
+    resources
+    | where type =~ 'microsoft.compute/virtualmachines'
+    | extend nicRefs = coalesce(properties.networkProfile.networkInterfaces, dynamic([]))
+    | mv-expand nic = nicRefs
+    | project SubscriptionId = subscriptionId, ResourceGroup = resourceGroup, Location = location, vmName = name, TargetResourceId = tolower(id), nicId = tostring(nic.id)
+    | join kind=leftouter (
+        resources | where type =~ 'microsoft.network/networkinterfaces'
+        | mv-expand ipconfig = properties.ipConfigurations
+        | project nicId = tostring(id), publicIpId = tostring(ipconfig.properties.publicIPAddress.id)
+        | where isnotempty(publicIpId)
+    ) on nicId
+    | join kind=leftouter (
+        resources | where type =~ 'microsoft.network/publicipaddresses'
+        | project publicIpId = tostring(id), PublicIPAddress = tostring(properties.ipAddress), FQDN = tostring(properties.dnsSettings.fqdn)
+    ) on publicIpId
+    | where isnotempty(PublicIPAddress)
+    | project SubscriptionId, ResourceGroup, ResourceType = 'microsoft.compute/virtualmachines', ResourceName = vmName, Location, PublicIPAddress, FQDN, Service = 'VirtualMachine', TargetResourceId, StorageAccountName = "" 
+    // PART B: PaaS Services
+    | union (
+        resources
+        | where type in~ (
+            'microsoft.storage/storageaccounts', 'microsoft.keyvault/vaults', 'microsoft.sql/servers', 
+            'microsoft.containerregistry/registries', 'microsoft.web/sites', 'microsoft.apimanagement/service'
+          )
+        | extend pna = tolower(tostring(properties.publicNetworkAccess))
+        | where pna != 'disabled'
+        | extend FQDN = case(
+            type =~ 'microsoft.storage/storageaccounts', tostring(parse_url(tostring(properties.primaryEndpoints.blob)).Host),
+            type =~ 'microsoft.keyvault/vaults', tostring(parse_url(tostring(properties.vaultUri)).Host),
+            type =~ 'microsoft.sql/servers', tostring(properties.fullyQualifiedDomainName),
+            type =~ 'microsoft.containerregistry/registries', tostring(properties.loginServer),
+            type =~ 'microsoft.web/sites', tostring(properties.defaultHostName),
+            ''
+          )
+        | project SubscriptionId = subscriptionId, 
+                  ResourceGroup = resourceGroup, 
+                  ResourceType = type, 
+                  ResourceName = name, 
+                  Location = location, 
+                  PublicIPAddress = "", 
+                  FQDN, 
+                  Service = tostring(split(type, '/')[-1]), 
+                  TargetResourceId = tolower(id),
+                  // Populate StorageAccountName only if the type matches
+                  StorageAccountName = iff(type =~ 'microsoft.storage/storageaccounts', name, "")
+    )
+) on TargetResourceId
+// 3. Risk Labeling
+| extend PrivateLinkStatus = iff(HasPrivateEndpoint == true, "✅ Private Endpoint Exists", "❌ No Private Link")
+| extend RiskLevel = case(
+    HasPrivateEndpoint == true and (isnotempty(FQDN) or isnotempty(PublicIPAddress)), "Critical (Dual-Homed)",
+    isnotempty(FQDN) or isnotempty(PublicIPAddress), "High (Publicly Exposed)",
+    "Standard"
+)
+| project SubscriptionId, ResourceGroup, Service, ResourceName, StorageAccountName, Location, PublicIPAddress, FQDN, PrivateLinkStatus, RiskLevel
+| order by RiskLevel desc, Service asc
