@@ -1,0 +1,1 @@
+Create a gpt for <cybersecurity architect> and also include example user pormpts for this gpt
